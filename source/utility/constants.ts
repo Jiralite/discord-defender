@@ -1,0 +1,17 @@
+export const MEDIA_EXTENSIONS = [
+	"png",
+	"jpg",
+	"jpeg",
+	"gif",
+	"webp",
+	"bmp",
+	"tif",
+	"tiff",
+	"avif",
+	"mp4",
+	"webm",
+	"mov",
+	"mkv",
+	"avi",
+	"m4v",
+] as const;

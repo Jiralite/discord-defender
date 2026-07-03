@@ -1,0 +1,6 @@
+node_modules
+.pnpm-store
+distribution
+.env
+.env.development
+.DS_Store

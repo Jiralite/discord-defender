@@ -1,0 +1,29 @@
+name: Deploy Discord Defender
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      no-cache:
+        description: Skip the cache check?
+        type: boolean
+concurrency:
+  group: deploy-discord-defender
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  deploy:
+    name: Deploy application
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - run: |
+          flyctl secrets set --config fly.toml --stage SENTRY_RELEASE=${{ github.sha }}
+          flyctl deploy --config fly.toml --dockerfile Dockerfile --remote-only ${{ github.event.inputs.no-cache == 'true' && '--no-cache' || '' }}
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_DEPLOY_DISCORD_DEFENDER_TOKEN }}
