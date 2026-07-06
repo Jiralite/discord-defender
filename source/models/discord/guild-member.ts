@@ -1,6 +1,6 @@
 import type { APIUser, Snowflake } from "@discordjs/core";
 
-export interface GuildMemberData {
+interface GuildMemberData {
 	roles: readonly Snowflake[];
 	user: Pick<APIUser, "id">;
 }

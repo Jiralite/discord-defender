@@ -18,6 +18,7 @@ import {
 } from "../utility/configuration.js";
 import { MEDIA_EXTENSIONS } from "../utility/constants.js";
 import { can } from "../utility/permissions.js";
+import { isAttachmentSpamEnabled } from "./guild-settings.js";
 
 interface Counter {
 	count: number;
@@ -60,7 +61,7 @@ function getExtensionFromURL(url: string) {
 	}
 }
 
-export function normaliseAttachmentURL(url: string) {
+function normaliseAttachmentURL(url: string) {
 	try {
 		const parsed = new URL(url);
 
@@ -192,7 +193,7 @@ async function queueFingerprintFetch(
 	});
 }
 
-export async function createAttachmentHash(attachment: APIAttachment) {
+async function createAttachmentHash(attachment: APIAttachment) {
 	const requestURL = attachment.url;
 	const stableURL = normaliseAttachmentURL(requestURL);
 	const fallback = () =>
@@ -401,6 +402,10 @@ async function softban(guildId: Snowflake, userId: Snowflake, reason: string) {
 
 export async function handleAttachmentSpam(message: GatewayMessageCreateDispatchData) {
 	if (!message.guild_id || message.author.bot) {
+		return;
+	}
+
+	if (!(await isAttachmentSpamEnabled(message.guild_id))) {
 		return;
 	}
 

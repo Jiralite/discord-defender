@@ -8,7 +8,7 @@ import { REST } from "@discordjs/rest";
 import { WebSocketManager } from "@discordjs/ws";
 import { DISCORD_TOKEN } from "./utility/configuration.js";
 
-export const rest = new REST({ version: "10" }).setToken(DISCORD_TOKEN);
+const rest = new REST({ version: "10" }).setToken(DISCORD_TOKEN);
 
 export const gateway = new WebSocketManager({
 	intents:

@@ -11,6 +11,7 @@ import guildRoleCreate from "./events/guild-role-create.js";
 import guildRoleDelete from "./events/guild-role-delete.js";
 import guildRoleUpdate from "./events/guild-role-update.js";
 import guildUpdate from "./events/guild-update.js";
+import interactionCreate from "./events/interaction-create.js";
 import messageCreate from "./events/message-create.js";
 import ready from "./events/ready.js";
 import pino from "./pino.js";
@@ -28,6 +29,7 @@ for (const event of [
 	guildRoleDelete,
 	guildRoleUpdate,
 	guildUpdate,
+	interactionCreate,
 	messageCreate,
 	ready,
 ]) {

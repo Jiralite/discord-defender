@@ -15,3 +15,7 @@ export const MEDIA_EXTENSIONS = [
 	"avi",
 	"m4v",
 ] as const;
+
+export const ATTACHMENT_SPAM_COMMAND_NAME = "attachment-spam" as const;
+
+export const ATTACHMENT_SPAM_ENABLED_OPTION_NAME = "enabled" as const;

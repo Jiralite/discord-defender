@@ -15,6 +15,7 @@ function optionalInteger(fallback: number, minimum = 1) {
 
 const envSchema = z.object({
 	DISCORD_TOKEN: z.string().trim().min(1),
+	DATABASE_URL: z.url(),
 	ATTACHMENT_SPAM_THRESHOLD: optionalInteger(25, 2),
 	ATTACHMENT_DUPLICATE_THRESHOLD: optionalInteger(3, 2),
 	ATTACHMENT_WINDOW_SECONDS: optionalInteger(15),
@@ -36,6 +37,7 @@ const configuration = (PRODUCTION ? productionEnvSchema : envSchema).parse(proce
 
 export const {
 	DISCORD_TOKEN,
+	DATABASE_URL,
 	ATTACHMENT_DUPLICATE_THRESHOLD,
 	ATTACHMENT_FINGERPRINT_FULL_MAX_BYTES,
 	ATTACHMENT_FINGERPRINT_CONCURRENCY,

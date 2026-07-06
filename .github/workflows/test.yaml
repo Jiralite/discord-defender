@@ -33,6 +33,9 @@ jobs:
       - name: Validate TypeScript
         run: pnpm run test
 
+      - name: Run Knip
+        run: pnpm run knip
+
   style:
     name: Styling
     runs-on: ubuntu-latest

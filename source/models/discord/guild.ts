@@ -10,7 +10,7 @@ import type {
 import { GuildMember } from "./guild-member.js";
 import { Role } from "./role.js";
 
-export type GuildChannel = APIGuildChannel<Exclude<GuildChannelType, ThreadChannelType>> & {
+type GuildChannel = APIGuildChannel<Exclude<GuildChannelType, ThreadChannelType>> & {
 	guild_id: Snowflake;
 };
 

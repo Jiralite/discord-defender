@@ -1,0 +1,31 @@
+name: Deploy commands
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deploy:
+    name: Deploy commands
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.9.0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          cache: pnpm
+          node-version: 26
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Deploy commands
+        run: pnpm run deploy-commands
+        env:
+          GITHUB_ACTIONS: true
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
